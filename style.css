@@ -1,0 +1,393 @@
+/* --- Variables --- */
+:root {
+    --bg-darkest: #0a0a0a;
+    --bg-dark: #1a1a1a;
+    --bg-medium: #2a2a2a;
+    --bg-light: #3a3a3a;
+    --text-color: #ffffff;
+    --border-color: #444444;
+    --accent-color: #bbbbbb; /* A light grey for highlights/buttons */
+    --input-bg: #333333;
+}
+
+/* --- Global --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1, h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: normal;
+}
+
+h1 {
+    font-size: 1.8rem;
+    color: var(--text-color);
+}
+
+h2 {
+     font-size: 1.4rem;
+     color: var(--accent-color);
+     border-bottom: 1px solid var(--border-color);
+     padding-bottom: 0.5rem;
+     margin-top: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+}
+
+input[type="number"],
+input[type="password"],
+select {
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 8px 10px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    width: 70px; /* Default width for number inputs */
+}
+
+input[type="password"] {
+    width: 100%; /* API key input full width */
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 3px var(--accent-color);
+}
+
+button, .button {
+    background-color: var(--bg-light);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+    text-align: center;
+}
+
+button:hover, .button:hover {
+    background-color: var(--bg-medium);
+    border-color: var(--accent-color);
+}
+
+button:disabled {
+    background-color: var(--input-bg);
+    color: #777;
+    cursor: not-allowed;
+    border-color: var(--border-color);
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 0.8rem 0;
+}
+
+/* --- Header --- */
+.app-header {
+    background-color: var(--bg-darkest);
+    padding: 0.8rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; /* Needed for absolute positioning of panels */
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header-left, .header-right {
+    position: relative; /* Context for panels */
+    flex-basis: 50px; /* Give some space for icons */
+}
+.header-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.app-header h1 {
+    margin: 0;
+    flex-grow: 1; /* Allow title to take space */
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    color: var(--accent-color);
+    font-size: 1.5rem; /* Adjust icon size */
+    cursor: pointer;
+    padding: 5px;
+}
+
+.icon-button:hover {
+    color: var(--text-color);
+}
+
+/* --- Panels (API & Settings) --- */
+.panel {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 100%; /* Position below the icon */
+    margin-top: 8px;
+    background-color: var(--bg-medium);
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    min-width: 200px;
+}
+.panel.show {
+    display: block;
+}
+
+.api-panel {
+    left: 0;
+}
+.api-panel input {
+    margin-bottom: 0.5rem;
+}
+.api-panel .note {
+    font-size: 0.8rem;
+    color: #aaa;
+    margin-top: 0.5rem;
+}
+
+
+.settings-dropdown {
+    right: 0; /* Align to the right */
+}
+.settings-dropdown label {
+    display: inline-block;
+    margin-right: 10px;
+}
+.settings-dropdown select {
+    width: auto; /* Adjust select width */
+    padding: 5px 8px;
+}
+.settings-dropdown p {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+
+/* --- Main Content --- */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 1.5rem;
+    flex-grow: 1;
+}
+
+section {
+    background-color: var(--bg-medium);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 1rem;
+    flex-basis: 45%; /* Adjust basis for layout */
+    min-width: 300px; /* Ensure sections don't get too narrow */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Controls Section --- */
+.controls-section {
+    flex-basis: 40%; /* Slightly smaller */
+}
+
+.param-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    flex-wrap: wrap; /* Allow wrapping if needed */
+}
+
+.param-group label {
+    flex-basis: 80px; /* Fixed width for labels */
+    margin-bottom: 0; /* Remove bottom margin for alignment */
+    font-size: 0.95rem;
+}
+
+.param-group input[type="range"] {
+    flex-grow: 1; /* Slider takes remaining space */
+    margin: 0 10px;
+    cursor: pointer;
+    accent-color: var(--accent-color); /* Modern way to color range slider */
+    height: 5px;
+    background: var(--input-bg); /* Fallback for older browsers */
+    border-radius: 5px;
+    appearance: none; /* Override default look */
+    -webkit-appearance: none;
+}
+/* --- Custom Range Slider Track --- */
+input[type=range]::-webkit-slider-runnable-track {
+  height: 5px;
+  background: var(--input-bg);
+  border: none;
+  border-radius: 3px;
+}
+input[type=range]::-moz-range-track {
+  height: 5px;
+  background: var(--input-bg);
+  border: none;
+  border-radius: 3px;
+}
+/* --- Custom Range Slider Thumb --- */
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  margin-top: -6px; /* Centers thumb on the track */
+}
+input[type=range]::-moz-range-thumb {
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: var(--accent-color);
+}
+
+
+.param-group input[type="number"] {
+    width: 75px; /* Slightly wider number input */
+    text-align: right;
+}
+
+#reset-params {
+    width: 100%;
+    margin-top: 1rem;
+    background-color: var(--bg-dark);
+}
+#reset-params:hover {
+    background-color: var(--input-bg);
+}
+
+/* --- Image Section --- */
+.image-section {
+    flex-basis: 50%; /* Slightly larger */
+}
+
+.image-upload-wrapper {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    align-items: center;
+}
+
+.image-preview-container {
+    width: 100%;
+    min-height: 200px; /* Ensure space even without image */
+    background-color: var(--bg-dark);
+    border: 1px dashed var(--border-color);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    overflow: hidden; /* Hide parts of image if too big */
+}
+
+#image-preview {
+    max-width: 100%;
+    max-height: 300px; /* Limit preview height */
+    display: block; /* Remove extra space below image */
+}
+
+#preview-placeholder {
+    color: #888;
+    text-align: center;
+}
+
+/* --- Generate Section --- */
+.generate-section {
+    flex-basis: 100%; /* Full width */
+    text-align: center;
+}
+
+#generate-lut {
+    font-size: 1.1rem;
+    padding: 12px 25px;
+    background-color: var(--accent-color);
+    color: var(--bg-darkest);
+    font-weight: bold;
+    border: none;
+}
+#generate-lut:hover {
+    background-color: var(--text-color);
+}
+
+/* Status Messages */
+.status-message {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #aaa;
+    min-height: 1.2em; /* Reserve space */
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    section {
+        flex-basis: 100%;
+        margin: 0.5rem 0;
+    }
+    .app-header {
+        padding: 0.5rem 1rem;
+    }
+    .app-header h1 {
+        font-size: 1.5rem;
+    }
+    .param-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .param-group label {
+        flex-basis: auto;
+        margin-bottom: 0.3rem;
+        text-align: left;
+    }
+    .param-group input[type="range"] {
+       margin: 0.3rem 0;
+    }
+     .param-group input[type="number"] {
+       width: 100%;
+       text-align: left;
+       margin-top: 0.3rem;
+    }
+    .image-upload-wrapper {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: stretch;
+    }
+    .image-upload-wrapper .button,
+    .image-upload-wrapper button {
+        width: 100%;
+    }
+}
