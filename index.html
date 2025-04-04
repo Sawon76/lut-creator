@@ -1,5 +1,8 @@
+--- START OF FILE index.html ---
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +10,48 @@
     <link rel="stylesheet" href="style.css">
     <!-- Add Font Awesome or similar if you want better icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Optional: Basic styling for the button group if not in style.css */
+        .button-group {
+            display: flex;
+            /* Align buttons horizontally */
+            justify-content: center;
+            /* === ADDED THIS LINE TO CENTER ITEMS === */
+            flex-wrap: wrap;
+            /* Allow wrapping on smaller screens */
+            gap: 10px;
+            /* Space between buttons */
+            margin-bottom: 1em;
+            /* Space below the button group */
+        }
+
+        /* Ensure the link looks like a button (if not already handled by a general .button class in style.css) */
+        a.button {
+            padding: 8px 15px;
+            /* Example padding */
+            background-color: #007bff;
+            /* Example background */
+            color: white;
+            /* Example text color */
+            text-decoration: none;
+            border-radius: 4px;
+            /* Example border radius */
+            border: 1px solid transparent;
+            cursor: pointer;
+            display: inline-block;
+            /* Needed for padding/margins */
+            text-align: center;
+            line-height: normal;
+            /* Ensure consistent vertical alignment */
+        }
+
+        a.button:hover {
+            background-color: #0056b3;
+            /* Example hover background */
+        }
+    </style>
 </head>
+
 <body>
 
     <header class="app-header">
@@ -19,15 +63,15 @@
                 <label for="api-key">Enter API Key:</label>
                 <input type="password" id="api-key" name="api-key" placeholder="Your API Key">
                 <button id="save-api-key">Save</button>
-                 <p class="note">Note: AI feature requires a compatible API Key (currently simulated).</p>
+                <p class="note">Note: AI feature requires a compatible API Key (currently simulated).</p>
             </div>
         </div>
         <h1>LUT Generator</h1>
         <div class="header-right">
-             <button id="settings-icon" class="icon-button" title="Settings">
+            <button id="settings-icon" class="icon-button" title="Settings">
                 <i class="fas fa-cog"></i> <!-- Font Awesome cog icon -->
             </button>
-             <div id="settings-dropdown" class="panel settings-dropdown">
+            <div id="settings-dropdown" class="panel settings-dropdown">
                 <label for="lut-size">LUT Size:</label>
                 <select id="lut-size" name="lut-size">
                     <option value="17">17</option>
@@ -51,20 +95,21 @@
                     <input type="range" id="contrast" name="contrast" min="0.5" max="1.5" step="0.01" value="1.0">
                     <input type="number" id="contrast-val" min="0.5" max="1.5" step="0.01" value="1.0">
                 </div>
-                 <div class="param-group">
+                <div class="param-group">
                     <label for="saturation">Saturation</label>
                     <input type="range" id="saturation" name="saturation" min="0.0" max="2.0" step="0.01" value="1.0">
-                     <input type="number" id="saturation-val" min="0.0" max="2.0" step="0.01" value="1.0">
+                    <input type="number" id="saturation-val" min="0.0" max="2.0" step="0.01" value="1.0">
                 </div>
                 <div class="param-group">
                     <label for="temperature">Temperature</label>
-                    <input type="range" id="temperature" name="temperature" min="-1.0" max="1.0" step="0.01" value="0.0">
+                    <input type="range" id="temperature" name="temperature" min="-1.0" max="1.0" step="0.01"
+                        value="0.0">
                     <input type="number" id="temperature-val" min="-1.0" max="1.0" step="0.01" value="0.0">
                 </div>
-                 <div class="param-group">
+                <div class="param-group">
                     <label for="exposure">Exposure</label>
                     <input type="range" id="exposure" name="exposure" min="-2.0" max="2.0" step="0.05" value="0.0">
-                     <input type="number" id="exposure-val" min="-2.0" max="2.0" step="0.05" value="0.0">
+                    <input type="number" id="exposure-val" min="-2.0" max="2.0" step="0.05" value="0.0">
                 </div>
                 <div class="param-group">
                     <label for="highlights">Highlights</label>
@@ -76,17 +121,17 @@
                     <input type="range" id="shadows" name="shadows" min="-1.0" max="1.0" step="0.01" value="0.0">
                     <input type="number" id="shadows-val" min="-1.0" max="1.0" step="0.01" value="0.0">
                 </div>
-                 <div class="param-group">
+                <div class="param-group">
                     <label for="whites">Whites</label>
                     <input type="range" id="whites" name="whites" min="-0.5" max="0.5" step="0.01" value="0.0">
-                     <input type="number" id="whites-val" min="-0.5" max="0.5" step="0.01" value="0.0">
+                    <input type="number" id="whites-val" min="-0.5" max="0.5" step="0.01" value="0.0">
                 </div>
-                 <div class="param-group">
+                <div class="param-group">
                     <label for="blacks">Blacks</label>
                     <input type="range" id="blacks" name="blacks" min="-0.5" max="0.5" step="0.01" value="0.0">
-                     <input type="number" id="blacks-val" min="-0.5" max="0.5" step="0.01" value="0.0">
+                    <input type="number" id="blacks-val" min="-0.5" max="0.5" step="0.01" value="0.0">
                 </div>
-                 <div class="param-group">
+                <div class="param-group">
                     <label for="intensity">Intensity</label>
                     <input type="range" id="intensity" name="intensity" min="0.0" max="2.0" step="0.01" value="1.0">
                     <input type="number" id="intensity-val" min="0.0" max="2.0" step="0.01" value="1.0">
@@ -102,17 +147,27 @@
                 <label for="image-upload" class="button">Upload Image</label>
                 <input type="file" id="image-upload" accept="image/*" style="display: none;">
                 <button type="button" id="ai-fetch-button" disabled>Get Values via AI</button>
-             </div>
+            </div>
             <div class="image-preview-container">
                 <img id="image-preview" src="#" alt="Image Preview" style="display: none;">
                 <p id="preview-placeholder">Upload an image to see preview and enable AI feature.</p>
             </div>
-             <p id="ai-status" class="status-message"></p>
+            <p id="ai-status" class="status-message"></p>
         </section>
 
         <section class="generate-section">
             <h2>Generate LUT</h2>
-            <button id="generate-lut">Generate & Download .cube LUT</button>
+            <!-- Group buttons together for better layout control -->
+            <div class="button-group"> <!-- Flexbox with justify-content: center applied via CSS -->
+                <button id="generate-lut">Generate & Download .cube LUT</button>
+                <!-- === ADDED LINK === -->
+                <!-- Replace YOUR_APPLY_LUT_WEBSITE_URL_HERE with the actual URL -->
+                <a href="https://lut-applier.vercel.app/" id="apply-lut-link" class="button" target="_blank"
+                    title="Apply these LUT settings on our companion site (opens in new tab)">
+                    Apply LUT Online
+                </a>
+                <!-- ================= -->
+            </div>
             <p id="generate-status" class="status-message"></p>
             <a id="download-link" style="display: none;"></a>
         </section>
@@ -120,4 +175,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
